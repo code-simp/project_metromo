@@ -145,7 +145,7 @@ class recharge_form extends StatelessWidget {
 
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
-                          child: Text('Demo it', style: TextStyle(
+                          child: Text('Cancel', style: TextStyle(
                               fontFamily: 'montserrat',
                               fontWeight: FontWeight.w600,
                               fontSize: 24,
