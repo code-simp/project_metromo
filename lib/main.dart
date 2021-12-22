@@ -9,9 +9,10 @@ import 'package:project_metromo/pages/travel.dart';
 import 'package:project_metromo/pages/new_card_success.dart';
 import 'package:project_metromo/pages/oops2.dart';
 import 'package:project_metromo/pages/oops1.dart';
+import 'package:project_metromo/pages/history.dart';
 
 void main() => runApp(MaterialApp(
-  initialRoute: 'oops2',
+  initialRoute: 'history',
 
   routes: {
     'onboard': (context) => onboard(),
@@ -24,5 +25,6 @@ void main() => runApp(MaterialApp(
     'travel':(context) => travel(),
     'oops1':(context) => oops1(),
     'oops2':(context) => oops2(),
+    'history':(context) => history(),
   },
 ));
