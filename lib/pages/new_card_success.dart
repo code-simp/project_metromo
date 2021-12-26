@@ -81,7 +81,9 @@ class new_card_success extends StatelessWidget {
                     ),
                     SizedBox(height: 20,),
                     Center(
-                        child: RaisedButton(onPressed: (){},
+                        child: RaisedButton(onPressed: (){
+                          Navigator.pop(context);
+                        },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50),
                               side: BorderSide(color: Colors.green,width: 7)
