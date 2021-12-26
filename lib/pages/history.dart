@@ -25,7 +25,7 @@ class history extends StatelessWidget {
 
                     SizedBox(height: 30,),
 
-                    Text('Recharge',
+                    Text('History',
                       style: TextStyle(
                           fontFamily: 'montserrat',
                           fontWeight: FontWeight.w700,

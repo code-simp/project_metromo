@@ -1,6 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class new_card extends StatelessWidget {
+  Future<String> getPosts() async {
+    Response card_no = await get(Uri.parse('http://10.0.2.2:5000/add_card'));
+    List CardNo = jsonDecode(card_no.body);
+    return CardNo[0][0];
+  }
+
+
   const new_card({Key? key}) : super(key: key);
 
   @override
@@ -46,7 +56,13 @@ class new_card extends StatelessWidget {
                     Row(
                       children: [
                         Center(
-                            child: RaisedButton(onPressed: (){},
+                            child: RaisedButton(onPressed: () async{
+                                String card_id = await getPosts();
+                                Navigator.pushReplacementNamed(context, '/new_card_success',arguments: {
+                                  'cardNo' : card_id
+                                } );
+                                // print(card_id);
+                            },
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50)),
                               color: Color.fromRGBO(131, 3, 50, 1),
@@ -66,7 +82,9 @@ class new_card extends StatelessWidget {
 
                         Flexible(
                           child: Center(
-                              child: RaisedButton(onPressed: (){},
+                              child: RaisedButton(onPressed: (){
+                                Navigator.pop(context);
+                              },
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                     side: BorderSide(color: Color.fromRGBO(131, 3, 50, 1),width: 4)

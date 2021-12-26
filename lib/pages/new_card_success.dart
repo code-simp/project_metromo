@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class new_card_success extends StatelessWidget {
-  final card_no = '19MTRO21';
-  const new_card_success({Key? key}) : super(key: key);
-
+  Map data = {};
 
   @override
   Widget build(BuildContext context) {
+
+    data = data.isNotEmpty ? data : ModalRoute.of(context)?.settings.arguments as Map;
+
+
     return Scaffold(
         body: Container(
             decoration: BoxDecoration(
@@ -68,7 +70,7 @@ class new_card_success extends StatelessWidget {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
-                          child: Text('$card_no',style: TextStyle(
+                          child: Text('${data['cardNo']}',style: TextStyle(
                               fontFamily: 'montserrat',
                               fontWeight: FontWeight.w600,
                               fontSize: 24,

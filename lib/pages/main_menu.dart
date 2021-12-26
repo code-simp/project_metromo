@@ -41,7 +41,7 @@ class mainMenu extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: (){
-
+                          Navigator.pushNamed(context, '/new_card');
                       },
                       child: Container(
                         child: Padding(
@@ -77,7 +77,7 @@ class mainMenu extends StatelessWidget {
                     SizedBox(width: 20,),
                     InkWell(
                       onTap: (){
-
+                        Navigator.pushNamed(context, '/recharge');
                       },
                       child: Container(
                           child: Padding(
@@ -119,7 +119,7 @@ class mainMenu extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: (){
-
+                        Navigator.pushNamed(context, '/travel');
                       },
                       child: Container(
                           child: Padding(
@@ -157,7 +157,7 @@ class mainMenu extends StatelessWidget {
                     SizedBox(width: 20,),
                     InkWell(
                       onTap: (){
-
+                        Navigator.pushNamed(context, '/history');
                       },
                       child: Container(
                           child: Padding(

@@ -48,7 +48,9 @@ class onboard extends StatelessWidget {
                   Flexible(
                     child: Center(
                     child: Flexible(
-                      child: RaisedButton(onPressed: (){},
+                      child: RaisedButton(onPressed: (){
+                        Navigator.pushReplacementNamed(context, '/mainMenu');
+                      },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
                         color: Color.fromRGBO(131, 3, 50, 1),

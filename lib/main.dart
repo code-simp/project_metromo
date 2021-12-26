@@ -12,19 +12,19 @@ import 'package:project_metromo/pages/oops1.dart';
 import 'package:project_metromo/pages/history.dart';
 
 void main() => runApp(MaterialApp(
-  initialRoute: 'history',
+  initialRoute: '/mainMenu',
 
   routes: {
-    'onboard': (context) => onboard(),
-    'mainMenu': (context) => mainMenu(),
-    'recharge':(context) => recharge(),
-    'success' : (context) => success(),
-    'new_card':(context) => new_card(),
-    'new_card_success':(context) => new_card_success(),
-    'travel_success':(context) => travel_success(),
-    'travel':(context) => travel(),
-    'oops1':(context) => oops1(),
-    'oops2':(context) => oops2(),
-    'history':(context) => history(),
+    '/onboard': (context) => onboard(),
+    '/mainMenu': (context) => mainMenu(),
+    '/recharge':(context) => recharge(),
+    '/success' : (context) => success(),
+    '/new_card':(context) => new_card(),
+    '/new_card_success':(context) => new_card_success(),
+    '/travel_success':(context) => travel_success(),
+    '/travel':(context) => travel(),
+    '/oops1':(context) => oops1(),
+    '/oops2':(context) => oops2(),
+    '/history':(context) => history(),
   },
 ));
