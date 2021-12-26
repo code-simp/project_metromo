@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 class success extends StatelessWidget {
-  const success({Key? key}) : super(key: key);
+  Map data = {};
 
   @override
   Widget build(BuildContext context) {
+
+    data = data.isNotEmpty ? data : ModalRoute.of(context)?.settings.arguments as Map;
+
     return Scaffold(
         body: Container(
             decoration: BoxDecoration(
@@ -48,11 +51,43 @@ class success extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
+                    SizedBox(height: 10,),
+                    Center(
+                      child: Text('Here’s your new\nBalance',
+                        style: TextStyle(
+                            fontFamily: 'montserrat',
+                            fontWeight: FontWeight.w700,
+                            fontSize: 24,
+                            color: Color.fromRGBO(25, 6, 25, 1)
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
 
                     SizedBox(height: 20,),
 
                     Center(
-                        child: RaisedButton(onPressed: (){},
+                      child: Card(
+                        elevation: 7,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Text('${data['balance']}',style: TextStyle(
+                              fontFamily: 'montserrat',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 24,
+                              color: Color.fromRGBO(25, 6, 25, 1)
+                          ),),
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: 20,),
+
+                    Center(
+                        child: RaisedButton(onPressed: (){
+                          Navigator.pop(context);
+                        },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50),
                               side: BorderSide(color: Colors.green,width: 7)
