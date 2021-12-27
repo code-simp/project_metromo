@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
+
 
 class history extends StatelessWidget {
   const history({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(image: AssetImage('assets/bg.png'),
@@ -48,6 +54,22 @@ class history_form extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future<List> transaction() async {
+      Response data = await get(Uri.parse('http://10.0.2.2:5000/history_all'));
+      List TransTable = jsonDecode(data.body);
+      // print(Balance[0][0]);
+      return TransTable;
+    }
+
+    Future<List> card_history(card_id) async {
+      Response data = await get(Uri.parse('http://10.0.2.2:5000/history/$card_id'));
+      List TransTable = jsonDecode(data.body);
+      // print(Balance[0][0]);
+      return TransTable;
+    }
+
+    final cardIdEditingController = TextEditingController();
+
     return Form(
       key: _formKey,
       child: Column(
@@ -69,6 +91,7 @@ class history_form extends StatelessWidget {
               child: Container(
                 padding:EdgeInsets.only(left:20),
                 child: TextFormField(
+                  controller: cardIdEditingController,
                   decoration:InputDecoration(
                     label: Text('Enter your card ID',style: TextStyle(
                       fontFamily: 'montserrat',
@@ -89,7 +112,12 @@ class history_form extends StatelessWidget {
           Row(
             children: [
               Center(
-                  child: RaisedButton(onPressed: (){},
+                  child: RaisedButton(onPressed: () async{
+                    String card_id = cardIdEditingController.text;
+                    List data = await card_history(card_id);
+                    Navigator.pushReplacementNamed(context, '/history_cards',arguments: data);
+
+                  },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50)),
                     color: Color.fromRGBO(131, 3, 50, 1),
@@ -109,7 +137,9 @@ class history_form extends StatelessWidget {
 
               Flexible(
                 child: Center(
-                    child: RaisedButton(onPressed: (){},
+                    child: RaisedButton(onPressed: (){
+                      Navigator.pop(context);
+                    },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                           side: BorderSide(color: Color.fromRGBO(131, 3, 50, 1),width: 4)
@@ -147,7 +177,10 @@ class history_form extends StatelessWidget {
           ),
           SizedBox(height: 20,),
           Center(
-            child: TextButton(onPressed: (){}, child: Text('View all transactions',
+            child: TextButton(onPressed: () async{
+              List data = await transaction();
+              Navigator.pushReplacementNamed(context, '/history_cards',arguments: data);
+            }, child: Text('View all transactions',
               style: TextStyle(
                 fontFamily: 'montserrat',
                 fontWeight: FontWeight.w600,

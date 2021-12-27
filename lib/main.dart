@@ -10,6 +10,7 @@ import 'package:project_metromo/pages/new_card_success.dart';
 import 'package:project_metromo/pages/oops2.dart';
 import 'package:project_metromo/pages/oops1.dart';
 import 'package:project_metromo/pages/history.dart';
+import 'package:project_metromo/pages/history_cards.dart';
 
 void main() => runApp(MaterialApp(
   initialRoute: '/mainMenu',
@@ -26,5 +27,6 @@ void main() => runApp(MaterialApp(
     '/oops1':(context) => oops1(),
     '/oops2':(context) => oops2(),
     '/history':(context) => history(),
+    '/history_cards':(context) => history_cards(),
   },
 ));
