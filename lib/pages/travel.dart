@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
+
 
 class travel extends StatelessWidget {
   const travel({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    Future<String> travel(card_id,source,dest) async {
+      Response balance = await get(Uri.parse('http://10.0.2.2:5000/travel/$card_id/$source/$dest'));
+      List Balance = jsonDecode(balance.body);
+      // print(Balance[0][0]);
+      return Balance[0][0];
+    }
+
+    final cardIdEditingController = TextEditingController();
+    final sourceEditingController = TextEditingController();
+    final destEditingController = TextEditingController();
+
+
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(image: AssetImage('assets/bg.png'),
@@ -50,6 +67,7 @@ class travel extends StatelessWidget {
                         child: Container(
                           padding:EdgeInsets.only(left:20),
                           child: TextFormField(
+                            controller: cardIdEditingController,
                             decoration:InputDecoration(
                               label: Text('Enter you card number',style: TextStyle(
                                 fontFamily: 'montserrat',
@@ -78,6 +96,7 @@ class travel extends StatelessWidget {
                         child: Container(
                           padding:EdgeInsets.only(left:20),
                           child: TextFormField(
+                            controller: sourceEditingController,
                             decoration:InputDecoration(
                               label: Text('Enter the source',style: TextStyle(
                                 fontFamily: 'montserrat',
@@ -106,6 +125,7 @@ class travel extends StatelessWidget {
                         child: Container(
                           padding:EdgeInsets.only(left:20),
                           child: TextFormField(
+                            controller: destEditingController,
                             decoration:InputDecoration(
                               label: Text('Enter the destination',style: TextStyle(
                                 fontFamily: 'montserrat',
@@ -122,7 +142,17 @@ class travel extends StatelessWidget {
                     Row(
                       children: [
                         Center(
-                            child: RaisedButton(onPressed: (){},
+                            child: RaisedButton(onPressed: () async{
+                              String card_id = cardIdEditingController.text;
+                              String source = sourceEditingController.text;
+                              String dest = destEditingController.text;
+                              String bal = await travel(card_id,source,dest);
+                              print(bal);
+                              Navigator.pushReplacementNamed(context, '/recharge_success',arguments: {
+                                'balance' : bal
+                              } );
+
+                            },
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50)),
                               color: Color.fromRGBO(131, 3, 50, 1),
@@ -142,7 +172,9 @@ class travel extends StatelessWidget {
 
                         Flexible(
                           child: Center(
-                              child: RaisedButton(onPressed: (){},
+                              child: RaisedButton(onPressed: (){
+                                Navigator.pop(context);
+                              },
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                     side: BorderSide(color: Color.fromRGBO(131, 3, 50, 1),width: 4)
