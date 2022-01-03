@@ -1,6 +1,18 @@
 # project_metromo
 
-A new Flutter project.
+A Full stack project that demo's the working of local metro card system
+
+## BackEnd for the same exists in : https://github.com/code-simp/metromo_backend
+
+## features
+
+provides :
+1. Add new card - adds a new card to the database with balance 50
+2. Recharge - specify the card-no and the amount to be recharged
+3. Travel - Enter the source and Destination, the system calculates the price for the travel and updates the balance
+4. Transactions - checks all the transactions for a particular card, or if not specified, the entire transaction table content displayed
+
+### Note that every single transaction is pushed to the transaction table 
 
 ## Getting Started
 
