@@ -13,7 +13,7 @@ import 'package:project_metromo/pages/history.dart';
 import 'package:project_metromo/pages/history_cards.dart';
 
 void main() => runApp(MaterialApp(
-  initialRoute: '/onboard',
+  initialRoute: '/mainMenu',
 
   routes: {
     '/onboard': (context) => onboard(),

@@ -52,7 +52,9 @@ class oops1 extends StatelessWidget {
                     SizedBox(height: 30,),
 
                     Center(
-                        child: RaisedButton(onPressed: (){},
+                        child: RaisedButton(onPressed: (){
+                          Navigator.pushReplacementNamed(context, '/recharge');
+                        },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50),
                               side: BorderSide(color: Colors.redAccent,width: 7)

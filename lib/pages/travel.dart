@@ -148,9 +148,16 @@ class travel extends StatelessWidget {
                               String dest = destEditingController.text;
                               String bal = await travel(card_id,source,dest);
                               print(bal);
-                              Navigator.pushReplacementNamed(context, '/recharge_success',arguments: {
-                                'balance' : bal
-                              } );
+                              if(bal == '-1'){
+                                Navigator.pushReplacementNamed(context, '/oops1');
+                                // print('hello');
+                              }
+                              else {
+                                Navigator.pushReplacementNamed(
+                                    context, '/recharge_success', arguments: {
+                                  'balance': bal
+                                });
+                              }
 
                             },
                               shape: RoundedRectangleBorder(
