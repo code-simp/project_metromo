@@ -70,7 +70,7 @@ class new_card_success extends StatelessWidget {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
-                          child: Text('${data['cardNo']}',style: TextStyle(
+                          child: SelectableText('${data['cardNo']}',style: TextStyle(
                               fontFamily: 'montserrat',
                               fontWeight: FontWeight.w600,
                               fontSize: 24,
