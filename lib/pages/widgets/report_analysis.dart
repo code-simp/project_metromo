@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
 
 class report_analysis extends StatefulWidget {
   const report_analysis({Key? key}) : super(key: key);
@@ -11,21 +13,18 @@ class report_analysis extends StatefulWidget {
 
 class _report_analysisState extends State<report_analysis> {
 
-  Map month_report = {
-    'revenue' : 450,
-    'data' : [
-      ['TRANS10012021-', 'trans_id_2', 'card_id_1', 'card_id_2', 200, 'trans_source', 'trans_dest'],
-      ['TRANS11012021-', 'trans_id_2', 'card_id_1', 'card_id_2', 30, 'trans_source', 'trans_dest'],
-      ['TRANS11012021-', 'trans_id_2', 'card_id_1', 'card_id_2', 50, 'trans_source', 'trans_dest'],
-      ['TRANS11012021-', 'trans_id_2', 'card_id_1', 'card_id_2', 150, 'trans_source', 'trans_dest'],
-      ['TRANS13012021-', 'trans_id_2', 'card_id_1', 'card_id_2', 543, 'trans_source', 'trans_dest'],
-      ['TRANS18012021-', 'trans_id_2', 'card_id_1', 'card_id_2', 300, 'trans_source', 'trans_dest'],
-      ['TRANS25012021-', 'trans_id_2', 'card_id_1', 'card_id_2', 50, 'trans_source', 'trans_dest'],
-    ]
-  };
+  Map month_report = {};
 
   @override
   Widget build(BuildContext context) {
+
+    month_report = month_report.isNotEmpty ? month_report : ModalRoute.of(context)?.settings.arguments as Map;
+    print(month_report['data'].runtimeType);
+
+    List<List> graph_data = month_report['data'];
+
+    print(graph_data.runtimeType);
+
     return Scaffold(
         body: Container(
             decoration: BoxDecoration(
@@ -104,7 +103,7 @@ class _report_analysisState extends State<report_analysis> {
                               tooltipBehavior: TooltipBehavior(enable: true),
                               series: [
                                 LineSeries(
-                                    dataSource: month_report['data'],
+                                    dataSource: graph_data,
                                     xValueMapper: (List data, _) => data[0].toString().substring(5,7),
                                     yValueMapper: (List data, _) => data[4],
                                     name: 'Revenue',

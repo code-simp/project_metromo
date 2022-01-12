@@ -17,7 +17,7 @@ import 'package:project_metromo/pages/widgets/report_analysis.dart';
 
 
 void main() => runApp(MaterialApp(
-  initialRoute: '/report_analysis',
+  initialRoute: '/mainMenu',
 
   routes: {
     '/onboard': (context) => onboard(),

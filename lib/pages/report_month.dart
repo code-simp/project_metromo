@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
+
 
 class report_month extends StatefulWidget {
   const report_month({Key? key}) : super(key: key);
@@ -9,19 +13,21 @@ class report_month extends StatefulWidget {
 
 class _report_monthState extends State<report_month> {
 
-  List data = [
-    ['TRANS10012022-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
-    ['TRANS10012022-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
-    ['TRANS10012021-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
-    ['TRANS10122021-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
-    ['TRANS10112021-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
-    ['TRANS10102021-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
-    ['TRANS10102021-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
-  ];
+  List data = [];
+
+  Future<Map> monthly_report(String month) async {
+    Response data = await get(Uri.parse('http://10.0.2.2:5000/report_analysis/$month'));
+    Map TransTable = jsonDecode(data.body);
+    // print(Balance[0][0]);
+    return TransTable;
+  }
 
 
   @override
   Widget build(BuildContext context) {
+
+    data = data.isNotEmpty ? data : ModalRoute.of(context)?.settings.arguments as List;
+
     return Scaffold(
         body: Container(
             decoration: BoxDecoration(
@@ -60,22 +66,30 @@ class _report_monthState extends State<report_month> {
 
                           return Padding(
                             padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                            child: Card(
-
-
-                              child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Text('${ data[index][0].toString().substring(7,9) }-${ data[index][0].toString().substring(9,13) }',
-                                      style : TextStyle(
-                                      fontFamily: 'montserrat',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 22,
-                                      color: Color.fromRGBO(25, 6, 25, 1)
-                                  )),
+                            child: InkWell(
+                              onTap: () async {
+                                Map res = await monthly_report('${ data[index][0].toString().substring(7,13) }');
+                                Navigator.pushReplacementNamed(context, '/report_analysis',arguments: res);
+                              },
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
                                 ),
-                              ),
 
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Text('${ data[index][0].toString().substring(7,9) }-${ data[index][0].toString().substring(9,13) }',
+                                        style : TextStyle(
+                                        fontFamily: 'montserrat',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 22,
+                                        color: Color.fromRGBO(25, 6, 25, 1)
+                                    )),
+                                  ),
+                                ),
+
+                              ),
                             ),
                           );
 

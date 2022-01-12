@@ -37,6 +37,7 @@ class _history_cardsState extends State<history_cards> {
     data = data.isNotEmpty ? data : ModalRoute.of(context)?.settings.arguments as List;
     List trans = data;
 
+
     return SafeArea(
       child: Container(
         decoration: BoxDecoration(

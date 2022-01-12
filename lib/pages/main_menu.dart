@@ -170,7 +170,7 @@ class mainMenu extends StatelessWidget {
 
 
 
-                                Text('History /\nBalance',
+                                Text('History /\nReport',
                                   style: TextStyle(
                                       fontFamily: 'montserrat',
                                       fontWeight: FontWeight.w700,

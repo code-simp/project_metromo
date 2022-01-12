@@ -68,6 +68,13 @@ class history_form extends StatelessWidget {
       return TransTable;
     }
 
+    Future<List> get_months() async {
+      Response data = await get(Uri.parse('http://10.0.2.2:5000/report_month'));
+      List TransTable = jsonDecode(data.body);
+      // print(Balance[0][0]);
+      return TransTable;
+    }
+
     final cardIdEditingController = TextEditingController();
 
     return Form(
@@ -163,7 +170,7 @@ class history_form extends StatelessWidget {
 
             ],
           ),
-          SizedBox(height: 20,),
+          SizedBox(height: 10,),
           Center(
             child: Text('or ',
               style: TextStyle(
@@ -175,7 +182,7 @@ class history_form extends StatelessWidget {
 
             ),
           ),
-          SizedBox(height: 20,),
+          SizedBox(height: 10,),
           Center(
             child: TextButton(onPressed: () async{
               List data = await transaction();
@@ -186,6 +193,36 @@ class history_form extends StatelessWidget {
                 fontWeight: FontWeight.w600,
                 fontSize: 24,
                 color: Color.fromRGBO(25, 6, 25, 1),
+                  decoration: TextDecoration.underline
+              ),
+
+            )
+            ),
+          ),
+          SizedBox(height: 10,),
+          Center(
+            child: Text('or ',
+              style: TextStyle(
+                fontFamily: 'montserrat',
+                fontWeight: FontWeight.w600,
+                fontSize: 24,
+                color: Color.fromRGBO(25, 6, 25, 1),
+              ),
+
+            ),
+          ),
+
+          SizedBox(height: 20,),
+          Center(
+            child: TextButton(onPressed: () async{
+              List data = await get_months();
+              Navigator.pushReplacementNamed(context, '/report_month',arguments: data);
+            }, child: Text('View monthly report',
+              style: TextStyle(
+                  fontFamily: 'montserrat',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 24,
+                  color: Color.fromRGBO(25, 6, 25, 1),
                   decoration: TextDecoration.underline
               ),
 
