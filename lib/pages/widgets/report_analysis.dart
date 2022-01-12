@@ -26,14 +26,6 @@ class _report_analysisState extends State<report_analysis> {
       Graph_data.add(i);
     }
 
-    print(Graph_data[2][4]);
-
-
-    List temp = month_report['data'];
-    //List<List> graph_data = temp.map((data) => data).toList();
-
-    // print(graph_data.runtimeType);
-
     return Scaffold(
         body: Container(
             decoration: BoxDecoration(
@@ -124,7 +116,32 @@ class _report_analysisState extends State<report_analysis> {
                           ],
                         ),
                       ),
-                    )
+                    ),
+
+                    SizedBox(height: 10,),
+
+                    Center(
+                      child: RaisedButton(onPressed: (){
+                        Navigator.pushReplacementNamed(context, '/history');
+                      },
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                            side: BorderSide(color: Color.fromRGBO(131, 3, 50, 1),width: 4)
+                        ),
+
+                        color: Color.fromRGBO(255, 228, 211, 1),
+
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                          child: Text('Done', style: TextStyle(
+                            fontFamily: 'montserrat',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 24,
+                            color: Color.fromRGBO(131, 3, 50, 1),
+                          ),),
+                        ),
+                      ),
+                    ),
 
                   ]
               ),

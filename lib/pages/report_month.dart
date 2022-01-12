@@ -100,7 +100,7 @@ class _report_monthState extends State<report_month> {
                     SizedBox(height: 20,),
                     Center(
                       child: RaisedButton(onPressed: (){
-                        Navigator.pop(context);
+                        Navigator.pushReplacementNamed(context, '/history');
                       },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
