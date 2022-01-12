@@ -11,12 +11,12 @@ class _report_monthState extends State<report_month> {
 
   List data = [
     ['TRANS10012022-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
+    ['TRANS10012022-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
+    ['TRANS10012021-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
     ['TRANS10122021-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
     ['TRANS10112021-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
     ['TRANS10102021-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
-    ['TRANS10112021-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
-  ['TRANS10112021-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
-  ['TRANS10112021-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
+    ['TRANS10102021-', 'trans_id_2', 'card_id_1', 'card_id_2', 'cost', 'trans_source', 'trans_dest'],
   ];
 
 
@@ -61,9 +61,7 @@ class _report_monthState extends State<report_month> {
                           return Padding(
                             padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                             child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
+
 
                               child: Center(
                                 child: Padding(
