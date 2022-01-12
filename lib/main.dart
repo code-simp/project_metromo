@@ -11,9 +11,13 @@ import 'package:project_metromo/pages/oops2.dart';
 import 'package:project_metromo/pages/oops1.dart';
 import 'package:project_metromo/pages/history.dart';
 import 'package:project_metromo/pages/history_cards.dart';
+import 'package:project_metromo/pages/report_month.dart';
+import 'package:project_metromo/pages/widgets/display_month.dart';
+import 'package:project_metromo/pages/widgets/report_analysis.dart';
+
 
 void main() => runApp(MaterialApp(
-  initialRoute: '/mainMenu',
+  initialRoute: '/report_analysis',
 
   routes: {
     '/onboard': (context) => onboard(),
@@ -28,5 +32,8 @@ void main() => runApp(MaterialApp(
     '/oops2':(context) => oops2(),
     '/history':(context) => history(),
     '/history_cards':(context) => history_cards(),
+    '/report_month':(context) => report_month(),
+    '/display_month':(context) => display_month(),
+    '/report_analysis':(context) => report_analysis()
   },
 ));

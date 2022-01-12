@@ -6,6 +6,7 @@ import 'package:http/http.dart';
 class new_card extends StatelessWidget {
   Future<String> getPosts() async {
     Response card_no = await get(Uri.parse('http://10.0.2.2:5000/add_card'));
+    print(card_no.body);
     List CardNo = jsonDecode(card_no.body);
     return CardNo[0][0];
   }
