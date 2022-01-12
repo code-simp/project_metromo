@@ -14,16 +14,25 @@ class report_analysis extends StatefulWidget {
 class _report_analysisState extends State<report_analysis> {
 
   Map month_report = {};
+  List<List<dynamic>> Graph_data = [];
 
   @override
   Widget build(BuildContext context) {
 
     month_report = month_report.isNotEmpty ? month_report : ModalRoute.of(context)?.settings.arguments as Map;
-    print(month_report['data'].runtimeType);
+    print(month_report['data'].length);
 
-    List<List> graph_data = month_report['data'];
+    for(List i in month_report['data']) {
+      Graph_data.add(i);
+    }
 
-    print(graph_data.runtimeType);
+    print(Graph_data[2][4]);
+
+
+    List temp = month_report['data'];
+    //List<List> graph_data = temp.map((data) => data).toList();
+
+    // print(graph_data.runtimeType);
 
     return Scaffold(
         body: Container(
@@ -103,9 +112,9 @@ class _report_analysisState extends State<report_analysis> {
                               tooltipBehavior: TooltipBehavior(enable: true),
                               series: [
                                 LineSeries(
-                                    dataSource: graph_data,
+                                    dataSource: Graph_data,
                                     xValueMapper: (List data, _) => data[0].toString().substring(5,7),
-                                    yValueMapper: (List data, _) => data[4],
+                                    yValueMapper: (List data, _) => num.parse(data[4]),
                                     name: 'Revenue',
                                     // Enable data label
                                     dataLabelSettings: DataLabelSettings(isVisible: true))

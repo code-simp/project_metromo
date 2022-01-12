@@ -15,10 +15,10 @@ class _report_monthState extends State<report_month> {
 
   List data = [];
 
-  Future<Map> monthly_report(String month) async {
+  Future<Object> monthly_report(String month) async {
     Response data = await get(Uri.parse('http://10.0.2.2:5000/report_analysis/$month'));
-    Map TransTable = jsonDecode(data.body);
-    // print(Balance[0][0]);
+    Object TransTable = jsonDecode(data.body);
+    // print(TransTable);
     return TransTable;
   }
 
@@ -68,7 +68,7 @@ class _report_monthState extends State<report_month> {
                             padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                             child: InkWell(
                               onTap: () async {
-                                Map res = await monthly_report('${ data[index][0].toString().substring(7,13) }');
+                                Object res = await monthly_report('${ data[index][0].toString().substring(7,13) }');
                                 Navigator.pushReplacementNamed(context, '/report_analysis',arguments: res);
                               },
                               child: Card(
